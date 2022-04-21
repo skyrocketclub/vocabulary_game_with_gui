@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>chooselang.qml</file>
+        <file>game.qml</file>
+        <file>StackViewPage.qml</file>
+        <file>home.qml</file>
+    </qresource>
+</RCC>
