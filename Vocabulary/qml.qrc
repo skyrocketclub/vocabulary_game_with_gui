@@ -5,5 +5,6 @@
         <file>game.qml</file>
         <file>StackViewPage.qml</file>
         <file>home.qml</file>
+        <file>Code.js</file>
     </qresource>
 </RCC>

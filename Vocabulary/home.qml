@@ -31,7 +31,6 @@ Rectangle {
                 font.styleName: "Bold Italic"
                 font.bold: true
                 font.pointSize: 30
-                highlighted: true
                 anchors.horizontalCenter: parent.horizontalCenter
                 onClicked: stackview.push("chooselang.qml")
 

@@ -14,6 +14,9 @@ ApplicationWindow {
     visible: true
     title: qsTr("VOCABULARY GAME")
 
+    property string language: ""
+    property int trials: 0
+
     Loader{
         id: mainloader
         anchors.fill: parent
