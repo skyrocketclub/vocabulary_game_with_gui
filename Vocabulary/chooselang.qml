@@ -4,14 +4,14 @@ import "Code.js" as Code
 
 Item {
     id:choose
-
+    property string language: comboBox.currentText
+    property int trials: spinBox.value
     Rectangle{
         id: rect
         color: "#24d3d5"
         anchors.fill: parent
 
-        property string language: comboBox.currentText
-        property int trials: spinBox.value
+
 
         Column {
             id: column
@@ -100,8 +100,12 @@ Item {
                     }
 
                     onClicked:{
-                        Code.language=comboBox.currentText ;
-                        Code.trials = spinBox.value;
+//                        Code.language=comboBox.currentText ;
+//                        Code.trials = spinBox.value;
+//                        choose.language = comboBox.currentText
+//                        choose.trials = spinBox.value
+                        root.language = comboBox.currentText
+                        root.trials = spinBox.value
                         stackview.push("game.qml")
                     }
                 }

@@ -8,7 +8,7 @@ import com.company.backend 1.0
 
 
 ApplicationWindow {
-    id: window
+    id: root
     width: 640
     height: 480
     visible: true
@@ -17,12 +17,15 @@ ApplicationWindow {
     property string language: ""
     property int trials: 0
 
+
+
     Loader{
         id: mainloader
         anchors.fill: parent
-        source:"StackViewPage.qml"
+            StackView{
+                id:stackview
+                anchors.fill: parent
+                initialItem: "home.qml"
+            }
     }
-
-
-
 }

@@ -3,7 +3,6 @@
         <file>main.qml</file>
         <file>chooselang.qml</file>
         <file>game.qml</file>
-        <file>StackViewPage.qml</file>
         <file>home.qml</file>
         <file>Code.js</file>
     </qresource>

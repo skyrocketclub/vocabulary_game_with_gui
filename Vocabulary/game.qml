@@ -3,6 +3,10 @@ import QtQuick.Controls 2.3
 import "Code.js" as Code
 
 Item {
+    id:gameon
+    property string language: ""
+    property int trials: 0
+
     Rectangle{
         id: rectangle
         color: "#e6f0f0"
@@ -12,8 +16,7 @@ Item {
         anchors.leftMargin: 0
         anchors.topMargin: 0
 
-//        property string language: ""
-//        property int trials: 0
+
 
         Column {
             id: column
@@ -147,7 +150,7 @@ Item {
 
                 Label {
                     id: label3
-                    text:Code.trials + " Words"
+                    text:gameon.trials + " Words"
                     font.family: "Courier"
                     font.pointSize: 20
                     anchors{
@@ -158,13 +161,17 @@ Item {
 
                 Label {
                     id: label4
-                    text: Code.language
+                    text: gameon.language
                     font.family: "Courier"
                     font.pointSize: 20
                     anchors{
                         left:row2.left
                         leftMargin: 50
                     }
+                }
+                Component.onCompleted: {
+                    gameon.language = root.language
+                    gameon.trials = root.trials
                 }
             }
         }
