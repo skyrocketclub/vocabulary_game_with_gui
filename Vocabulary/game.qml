@@ -1,11 +1,17 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.3
 import "Code.js" as Code
+import com.company.backend 1.0
 
 Item {
     id:gameon
     property string language: ""
     property int trials: 0
+    property string gameword: ""
+    property string englishtry: ""
+    property int loadstatus: 0
+    property int correct: 0
+
 
     Rectangle{
         id: rectangle
@@ -16,7 +22,9 @@ Item {
         anchors.leftMargin: 0
         anchors.topMargin: 0
 
-
+        Backend{
+            id:backend
+        }
 
         Column {
             id: column
@@ -66,6 +74,7 @@ Item {
                             leftMargin: 15
                             verticalCenter: column1.verticalCenter
                         }
+
                     }
 
                     Button {
@@ -75,12 +84,20 @@ Item {
                         width:textField.width
                         anchors{
                             left: textField.left
-//                            leftMargin: 60
-//                            verticalCenter: column1.verticalCenter
                             top: parent.top
                             topMargin: 10
                             bottom: textField.top
                             bottomMargin: 5
+                        }
+                        onClicked:{
+                            correct = Code.compare(textField.text,englishtry)
+                            if(correct === 1){
+                                label.text = "CORRECT"
+                                rectangle2.color = "green"
+                            }else{
+                                label.text = "WRONG"
+                                rectangle2.color = "red"
+                            }
                         }
                     }
                 }
@@ -114,12 +131,49 @@ Item {
                 anchors.topMargin: 10
                 anchors.left: row.left
 
-                Label {
-                    id: label2
-                    width: row1.width /3
+                Rectangle{
+                    id:labelshow
+                    width: button.width
                     height: row1.height
-                    text: qsTr("0 / 0")
+                    color: "lightgrey"
+                    anchors.left: row1.left
+
+                    Label {
+                        id: label2
+                        anchors.centerIn: labelshow
+                        width: row1.width /3
+                        height: row1.height
+                        text: qsTr("0 / 0")
+                        font.family: "Courier"
+                        font.pointSize: 30
+                    }
+                }
+
+
+
+                Button {
+                    id: button2
+                    text: qsTr("Next")
                     font.pointSize: 30
+                    font.family: "Courier"
+                    width: button.width
+                    height: row1.height
+                    anchors{
+                        horizontalCenter: row1.horizontalCenter
+                        left: label2.right
+                    }
+                    onClicked: {
+
+                        gameword = backend.language
+                        label1.text = Code.spanishget(gameword)
+                        englishtry = Code.englishget(gameword)
+
+
+//                        label1.text = spanish
+                        textField.clear()
+                        label.text=" "
+                        rectangle2.color = "white"
+                    }
                 }
 
                 Button {
@@ -129,13 +183,15 @@ Item {
                     text: qsTr("QUIT")
                     font.family: "Courier"
                     font.pointSize: 30
-                    //               anchors{
-                    //                   left:rectangle2.left
-                    //                   right: rectangle2.right
-                    //               }
+                    anchors{
+                        left: button2.right
+                    }
+                    onClicked: Qt.quit()
+                   }
                 }
 
-            }
+
+
 
             Row {
                 id: row2
@@ -172,6 +228,7 @@ Item {
                 Component.onCompleted: {
                     gameon.language = root.language
                     gameon.trials = root.trials
+                    loadstatus = backend.load
                 }
             }
         }

@@ -6,4 +6,8 @@
         <file>home.qml</file>
         <file>Code.js</file>
     </qresource>
+    <qresource prefix="/word">
+        <file>word/igbo.txt</file>
+        <file>word/spanish.txt</file>
+    </qresource>
 </RCC>

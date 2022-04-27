@@ -1,87 +1,59 @@
 #include "backend.h"
+#include "QDebug"
 
 Backend::Backend(QObject *parent)
     : QObject{parent}
 {
 
+
 }
 
-std::string Backend::gameline()
+/*
+ * 1 - when i get a word, move it into the used words, I remove it from the word pool
+ * 2 - Basically implement the previous idea of changing word source if word_pool is getting empty
+ * 3 - Make a new Q_property for playing the game
+ * 4 - Implement the String separation on Javascript
+ * 5 - Implement Equality logic as well as the number of trials on JavaScript
+ * */
+QString Backend::language()
 {
-    /*
-     * How it works
-     *      bare structure
-     * The javascript calls the game line
-     *
-     *      the cpp's job is to return a string with the english and the spanish
-     *      after the cpp returns that string, the string is moved to the region of used words...
-     *      the word is removed out of the word pool...
-     *      if the word_pool size == 0, then the word is gotten from the used words...
-     *
-     *      get the size of word_pool
-     *      if the size > 0{
-     *       generate a random number from 0 to that number (less 1)
-     *      set gameword to be the vector element at that random number
-     *
-     *      remove gameword from the word_pool
-     *      push it into used words
-     *      }
-     *      else{
-     *          get the size of used words
-     *          give the user a word from used words instead, and this continues to be the word
-     *          source until the game ends....
-     *      }
-     *
-     *      return the "gameword" to the person asking
-     *
-     *
-     * */
-    std::string gameword;
-
+    QString sentence;
     if(word_pool.size()>0){
-        int randnum;
-        srand(time(nullptr));
-        randnum = rand() % word_pool.size();
+        int random = rand()%word_pool.size();
+        sentence = word_pool.at(random);
 
-        //the gameword has now been set and is to be pushed into used_words
-        gameword = word_pool.at(randnum);
-        used_words.push_back(gameword);
-
-        auto iterator = word_pool.begin() + randnum;
-        word_pool.erase(iterator);
+        used_words.push_back(sentence);
+        auto it = word_pool.begin() + random;
+        word_pool.erase(it);
     }
-    else{
-        int randnum;
-        srand(time(nullptr));
-        randnum = rand() % used_words.size();
+    else if(used_words.size()>0){
+        int random = rand() % used_words.size();
+        sentence = used_words.at(random);
 
-        //the gameword has now been set and is to be pushed into used_words
-        gameword = used_words.at(randnum);
+    } else{
+        sentence = "FISH";
     }
-    return gameword;
+     return sentence;
 }
 
 
-void Backend::setLanguage(int num)
+//Load all the lines of text to the vector once and for all
+int Backend::load()
 {
-   language = num;
+    QString path,sentence;
+    path = "spanish.txt";
+    QFile file(path);
 
-    std::string path;
-    std::ifstream in_file;
-    if(language == 1){
-        //The user has chosen to play Spanish
-        path = "word/spanish.txt";
-    }
-    else if(language == 2){
-        path = "word/igbo.txt";
-    }
-    in_file.open(path);
-    std::string line;
 
-    //all the words of the document
-    while(std::getline(in_file,line)){
-        word_pool.push_back(line);
+    if(file.open(QIODevice::ReadOnly)){
+        while(!file.atEnd()){
+            sentence = file.readLine();
+            word_pool.push_back(sentence);
+        }
+        file.close();
+    }else{
+        qInfo()<<file.errorString();
     }
-
-    in_file.close();
+    qInfo()<<"WORD POOL SIZE IS NOW: "<<word_pool.size();
+    return 1;
 }

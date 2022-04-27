@@ -42,15 +42,22 @@
 #include <QObject>
 #include <fstream>
 #include <cstdlib>
-#include <vector>
+#include <QVector>
 #include <string>
 #include <time.h>
 #include <iterator>
+#include <QFile>
+
+
+
+using namespace std;
 
 class Backend : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(int language READ language WRITE setLanguage)
+    Q_PROPERTY(QString language READ language NOTIFY languageset)
+    Q_PROPERTY(int load READ load)
+
 public:
     explicit Backend(QObject *parent = nullptr);
 
@@ -58,18 +65,22 @@ public:
     //This function passes a line with spanish & english meaning to the Js
     //It is in the gameline function that used_words has a possibility of being called
 
-    std::string gameline();
-    void setLanguage(int); //when the language 'choice' is set, the word_pool will be prepared
+//    QVector<QString> gamelines();
+//    QVector<QString> setLanguage(int); //when the language 'choice' is set, the word_pool will be prepared
 
-    std::vector<std::string>word_pool;
-    std::vector<std::string>used_words;
 
+
+    QString language();
+    int load();
+    int m_language{};
 
 private:
-    int language{};
+    QVector<QString>word_pool{};
+    QVector<QString>used_words{};
+    std::string m_path{};
 
 signals:
-
+    void languageset();
 };
 
 #endif // BACKEND_H

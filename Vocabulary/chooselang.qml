@@ -1,17 +1,17 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.3
 import "Code.js" as Code
+import com.company.backend 1.0
 
 Item {
     id:choose
     property string language: comboBox.currentText
     property int trials: spinBox.value
+
     Rectangle{
         id: rect
         color: "#24d3d5"
         anchors.fill: parent
-
-
 
         Column {
             id: column
@@ -100,10 +100,6 @@ Item {
                     }
 
                     onClicked:{
-//                        Code.language=comboBox.currentText ;
-//                        Code.trials = spinBox.value;
-//                        choose.language = comboBox.currentText
-//                        choose.trials = spinBox.value
                         root.language = comboBox.currentText
                         root.trials = spinBox.value
                         stackview.push("game.qml")
