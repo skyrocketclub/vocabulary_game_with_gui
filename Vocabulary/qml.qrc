@@ -5,6 +5,7 @@
         <file>game.qml</file>
         <file>home.qml</file>
         <file>Code.js</file>
+        <file>end.qml</file>
     </qresource>
     <qresource prefix="/word">
         <file>word/igbo.txt</file>

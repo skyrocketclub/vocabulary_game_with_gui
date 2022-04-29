@@ -17,6 +17,8 @@ ApplicationWindow {
     property string language: ""
     property int trials: 0
     property string gameword: ""
+    property int percentage: 0
+
 
     Backend{
         id:backend

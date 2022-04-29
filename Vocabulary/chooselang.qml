@@ -102,7 +102,12 @@ Item {
                     onClicked:{
                         root.language = comboBox.currentText
                         root.trials = spinBox.value
-                        stackview.push("game.qml")
+
+                        if(root.trials === 0){
+                            stackview.push("qrc:/end.qml")
+                        }else{
+                            stackview.push("game.qml")
+                        }
                     }
                 }
                 Button {

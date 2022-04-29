@@ -9,11 +9,8 @@ Backend::Backend(QObject *parent)
 }
 
 /*
- * 1 - when i get a word, move it into the used words, I remove it from the word pool
- * 2 - Basically implement the previous idea of changing word source if word_pool is getting empty
- * 3 - Make a new Q_property for playing the game
- * 4 - Implement the String separation on Javascript
- * 5 - Implement Equality logic as well as the number of trials on JavaScript
+ *
+ *
  * */
 QString Backend::language()
 {
@@ -33,6 +30,8 @@ QString Backend::language()
     } else{
         sentence = "FISH";
     }
+    sentence = sentence.trimmed();
+    qInfo()<<sentence;
      return sentence;
 }
 
