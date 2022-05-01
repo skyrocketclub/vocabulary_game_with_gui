@@ -6,13 +6,14 @@ import com.company.backend 1.0
 
 
 /*
-  1b - make a property called counter, reflect the counter in the box
-  2 - add a label saying . enter the translation and press enter
-  4 - Upon reaching the total number of words, go to a new page and show the  score and ask
-        Play again? or Quit?
-  3 - Make the counter label to be centered in the rectangleee
+
+
+
+
 
   5 - Add pictures for each of the screens
+
+
   6 - Add words for the Igbo Version, Add Igbo pictures
   */
 Item {
@@ -20,8 +21,10 @@ Item {
     property string language: ""
     property int trials: 0
     property int numberOfTrials: 0
+
     property int points: 0
     property int tried:0
+
     property string gameword: ""
     property string english: ""
     property string spanish: "WORD"
@@ -94,25 +97,27 @@ Item {
 
                         onTextChanged: attempt = textField.text
 
-                        onEditingFinished: {
-                            button1.clicked = true
-//                            button2.enabled= true
-//                            button1.enabled=false
+                        onAccepted: {
+
+                            button2.enabled= true
+                            button1.enabled=false
 
 
-//                            attempt = attempt.toUpperCase()
-//                            console.log("IS "+ attempt + " = " + english)
-//                            var results = attempt.localeCompare(english)
-//                            if(results == 0){
-//                                points++;
-//                                label.text = "CORRECT";
-//                                rectangle2.color = "green";
-//                            }else{
-//                                console.log("Trials: "+ trials + "Points: "+ points)
-//                                label.text = "WRONG";
-//                                rectangle2.color = "red";
-//                                correct.visible = true
-//                            }
+                            attempt = attempt.toUpperCase()
+                            console.log("IS "+ attempt + " = " + english)
+                            var results = attempt.localeCompare(english)
+
+                            if(results == 0){
+                                points++;
+                                label.text = "CORRECT";
+                                rectangle2.color = "green";
+                            }else{
+                                console.log("Trials: "+ trials + "Points: "+ points)
+                                label.text = "WRONG";
+                                rectangle2.color = "red";
+                                correct.visible = true
+                            }
+
                         }
                     }
 
@@ -128,26 +133,26 @@ Item {
                             bottom: textField.top
                             bottomMargin: 5
                         }
-                        onClicked:{
-                            button2.enabled= true
-                            button1.enabled=false
+//                        onClicked:{
+//                            button2.enabled= true
+//                            button1.enabled=false
 
 
-                            attempt = attempt.toUpperCase()
-                            console.log("IS "+ attempt + " = " + english)
-                            var results = attempt.localeCompare(english)
-                            if(results == 0){
-                                points++
-//                                trials--
-                                label.text = "CORRECT";
-                                rectangle2.color = "green";
-                            }else{
-                                console.log("Trials: "+ trials)
-                                label.text = "WRONG";
-                                rectangle2.color = "red";
-                                correct.visible = true
-                            }
-                        }
+//                            attempt = attempt.toUpperCase()
+//                            console.log("IS "+ attempt + " = " + english)
+//                            var results = attempt.localeCompare(english)
+//                            if(results == 0){
+//                                points++
+////                                trials--
+//                                label.text = "CORRECT";
+//                                rectangle2.color = "green";
+//                            }else{
+//                                console.log("Trials: "+ trials)
+//                                label.text = "WRONG";
+//                                rectangle2.color = "red";
+//                                correct.visible = true
+//                            }
+//                        }
 
                     }
                 }
@@ -204,8 +209,6 @@ Item {
                     Label {
                         id: label2
                         anchors.centerIn: labelshow
-                        width: row1.width /3
-                        height: row1.height
                         text: tried + " / "+ numberOfTrials
                         font.family: "Courier"
                         font.pointSize: 30
@@ -229,7 +232,7 @@ Item {
                         button2.enabled= false
                         button1.enabled=true
                         correct.visible = false
-
+                        pressNext.visible = false
 
                         if(trials == 0){
                             console.log("Points: "+points+" trials "+ numberOfTrials)
@@ -294,7 +297,18 @@ Item {
                 }
 
                 Label {
-                    id: label4
+                    id: pressNext
+                    text: "PRESS NEXT"
+                    font.family: "Courier"
+                    font.pointSize: 20
+                    anchors{
+                       horizontalCenter: parent.horizontalCenter
+                    }
+                    visible: true
+                }
+
+                Label {
+                    id: languageChoice
                     text: gameon.language
                     font.family: "Courier"
                     font.pointSize: 20
@@ -303,6 +317,7 @@ Item {
                         leftMargin: 50
                     }
                 }
+
                 Component.onCompleted: {
                     button1.enabled=false
                     gameon.language = root.language
