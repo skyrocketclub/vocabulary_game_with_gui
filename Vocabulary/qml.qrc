@@ -6,9 +6,18 @@
         <file>home.qml</file>
         <file>Code.js</file>
         <file>end.qml</file>
+        <file>Frame.qml</file>
     </qresource>
     <qresource prefix="/word">
         <file>word/igbo.txt</file>
         <file>word/spanish.txt</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file>1.jpg</file>
+        <file>4.png</file>
+        <file>2.jpg</file>
+        <file>5.jpg</file>
+        <file>6.jpg</file>
+        <file>3.jpg</file>
     </qresource>
 </RCC>

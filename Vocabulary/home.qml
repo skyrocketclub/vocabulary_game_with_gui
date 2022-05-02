@@ -2,9 +2,19 @@ import QtQuick 2.0
 import QtQuick.Controls
 
 Item{
-Rectangle {
-        id: rect
+    property string imagesource: "qrc:/images/"+imagecount
+    property int imagecount: 1
+
+    Rectangle{
         anchors.fill: parent
+
+        Image{
+            anchors.fill: parent
+            source: imagesource
+            fillMode: Image.PreserveAspectFit
+            opacity: 0.1
+            visible: true
+        }
 
         Column {
             id: column

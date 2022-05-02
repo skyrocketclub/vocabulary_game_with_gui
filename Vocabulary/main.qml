@@ -6,7 +6,19 @@ import com.company.backend 1.0
 import "Code.js" as Code
 
 
+/*
 
+  The aim is to download the following pictures for the following game pages
+      There is a timer, the timer emits a signal after every three seconds
+      if the signal is emmitted, the source is changed... and this is implemented in all the pages
+
+  1. home game ( three pictures tagged 1 , 2 , 3 )... That change every 3 seconds
+  2. spanish --- 3 pictures
+  3. Igbo --- 3 pictures
+
+
+
+  */
 ApplicationWindow {
     id: root
     width: 640
