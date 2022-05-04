@@ -6,7 +6,6 @@
         <file>home.qml</file>
         <file>Code.js</file>
         <file>end.qml</file>
-        <file>Frame.qml</file>
     </qresource>
     <qresource prefix="/word">
         <file>word/igbo.txt</file>
@@ -19,5 +18,8 @@
         <file>5.jpg</file>
         <file>6.jpg</file>
         <file>3.jpg</file>
+        <file>7.jpg</file>
+        <file>8.jpg</file>
+        <file>9.jpg</file>
     </qresource>
 </RCC>

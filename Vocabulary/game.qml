@@ -4,18 +4,6 @@ import "Code.js" as Code
 import com.company.backend 1.0
 
 
-
-/*
-
-
-
-
-
-  5 - Add pictures for each of the screens
-
-
-  6 - Add words for the Igbo Version, Add Igbo pictures
-  */
 Item {
     id:gameon
     property string language: ""
@@ -98,6 +86,8 @@ Item {
                         onTextChanged: attempt = textField.text
 
                         onAccepted: {
+                            textField.focus = false
+                            button2.focus= true
 
                             button2.enabled= true
                             button1.enabled=false
@@ -119,7 +109,8 @@ Item {
                             }
 
                         }
-                    }
+
+                     }
 
                     Button {
                         id: button1
@@ -228,6 +219,8 @@ Item {
                         horizontalCenter: row1.horizontalCenter
                         left: label2.right
                     }
+
+
                     onClicked: {
                         button2.enabled= false
                         button1.enabled=true
@@ -323,7 +316,16 @@ Item {
                     gameon.language = root.language
                     gameon.trials = root.trials
                     numberOfTrials = gameon.trials
-                    loadstatus = backend.load
+
+                    if(language === "Spanish"){
+                      loadstatus = backend.load
+                    }
+                    else if(language === "Igbo"){
+                        loadstatus = backend.load1
+                    }
+                    else{
+                        loadstatus = backend.load2
+                    }
                 }
             }
 

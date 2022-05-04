@@ -35,7 +35,7 @@ Item {
 
             ComboBox {
                 id: comboBox
-                model:['Spanish','Igbo']
+                model:['Spanish','Igbo','German']
                 editable: false
                 //comboBox.currentText
                 anchors.horizontalCenter: parent.horizontalCenter

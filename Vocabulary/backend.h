@@ -47,6 +47,7 @@
 #include <time.h>
 #include <iterator>
 #include <QFile>
+#include <QTimer>
 
 
 
@@ -57,6 +58,10 @@ class Backend : public QObject
     Q_OBJECT
     Q_PROPERTY(QString language READ language NOTIFY languageset)
     Q_PROPERTY(int load READ load)
+    Q_PROPERTY(int load1 READ load1)
+    Q_PROPERTY(int load2 READ load2)
+    Q_PROPERTY(int timeoutStart READ timeoutStart)
+    Q_PROPERTY(int timeoutStop READ timeoutStop)
 
 public:
     explicit Backend(QObject *parent = nullptr);
@@ -72,7 +77,15 @@ public:
 
     QString language();
     int load();
+    int load1(); //load igbo
+    int load2(); //load german
+    void timeout();
+    int timeoutStart();
+    int timeoutStop();
+
+    QTimer timer;
     int m_language{};
+
 
 private:
     QVector<QString>word_pool{};
@@ -81,6 +94,7 @@ private:
 
 signals:
     void languageset();
+    void changePicture();
 };
 
 #endif // BACKEND_H

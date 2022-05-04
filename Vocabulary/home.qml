@@ -1,9 +1,14 @@
 import QtQuick 2.0
 import QtQuick.Controls
+import com.company.backend 1.0
 
 Item{
     property string imagesource: "qrc:/images/"+imagecount
     property int imagecount: 1
+
+    Component.onCompleted: {
+        backend.timeoutStart
+    }
 
     Rectangle{
         anchors.fill: parent
@@ -14,6 +19,18 @@ Item{
             fillMode: Image.PreserveAspectFit
             opacity: 0.1
             visible: true
+        }
+
+        Backend{
+             id: backend
+             onChangePicture: {
+                 if(imagecount === 9){
+                     imagecount = 1
+                 }
+                 else{
+                     imagecount++
+                 }
+             }
         }
 
         Column {
@@ -42,8 +59,10 @@ Item{
                 font.bold: true
                 font.pointSize: 30
                 anchors.horizontalCenter: parent.horizontalCenter
-                onClicked: stackview.push("chooselang.qml")
-
+                onClicked:{
+                    backend.timeoutStop
+                    stackview.push("chooselang.qml")
+                }
             }
         }
 }
