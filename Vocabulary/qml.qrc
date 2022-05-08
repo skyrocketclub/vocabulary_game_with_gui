@@ -22,4 +22,9 @@
         <file>8.jpg</file>
         <file>9.jpg</file>
     </qresource>
+    <qresource prefix="/files">
+        <file>german.txt</file>
+        <file>igbo.txt</file>
+        <file>spanish.txt</file>
+    </qresource>
 </RCC>

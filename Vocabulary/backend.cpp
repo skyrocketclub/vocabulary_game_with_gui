@@ -4,7 +4,7 @@
 Backend::Backend(QObject *parent)
     : QObject{parent}
 {
-    timer.setInterval(3000);
+    timer.setInterval(1000);
     connect(&timer,&QTimer::timeout,this,&Backend::timeout);
 }
 
@@ -40,7 +40,7 @@ QString Backend::language()
 int Backend::load()
 {
     QString path,sentence;
-    path = "spanish.txt";
+    path = ":/files/spanish.txt";
     QFile file(path);
 
 
@@ -60,7 +60,7 @@ int Backend::load()
 int Backend::load1()
 {
     QString path,sentence;
-    path = "igbo.txt";
+    path = ":/files/igbo.txt";
     QFile file(path);
 
 
@@ -80,7 +80,7 @@ int Backend::load1()
 int Backend::load2()
 {
     QString path,sentence;
-    path = "german.txt";
+    path = ":/files/spanish.txt";
     QFile file(path);
 
 
